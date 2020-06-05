@@ -7,14 +7,12 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 
 public class MontgomeryArithmetic {
-    public static BigInteger MR(BigInteger T, BigInteger N, BigInteger R, int pow) {
+    private static BigInteger MR(BigInteger T, BigInteger N, BigInteger R, int pow) {
         BigInteger[] array = AdvancedEuclideanAlgorithm.extendedAlgorithm(N, R);
         BigInteger d = array[0];
 
         if (!d.equals(BigInteger.ONE))
             throw new IllegalArgumentException("GCD(N,R) != 1");
-        if (T.compareTo(N.shiftLeft(pow)) >= 0)
-            throw new IllegalArgumentException("T >= NR");
 
         BigInteger invN = array[1];
         BigInteger minusInvN = invN.negate();

@@ -34,9 +34,9 @@ public class KaratsubaAlgorithm {
         return x2y2.add(x1x2y1y2.subtract(x2y2).subtract(x1y1).shiftLeft(N)).add(x1y1.shiftLeft(2 * N));
     }
 
-    public static void main(String []args){
-        System.out.println("multiplication Of Karatsuba 2*2="+ multiplicationOfKaratsuba(TWO,TWO).toString());
-        System.out.println("multiplication Of Karatsuba 1e9*1e9="+ multiplicationOfKaratsuba(BigInteger.valueOf(1000_000_000),BigInteger.valueOf(1000_000_000)).toString());
-        System.out.println("multiplication Of Karatsuba 2e9*2e9="+ multiplicationOfKaratsuba(BigInteger.valueOf(2000_000_000),BigInteger.valueOf(2000_000_000)).toString());
+    public static void main(String[] args) {
+        System.out.println("multiplication Of Karatsuba 2*2=" + multiplicationOfKaratsuba(TWO, TWO).toString());
+        System.out.println("multiplication Of Karatsuba 1e9*1e9=" + multiplicationOfKaratsuba(BigInteger.valueOf(1000_000_000), BigInteger.valueOf(1000_000_000)).toString());
+        System.out.println("multiplication Of Karatsuba 2e9*2e9=" + multiplicationOfKaratsuba(BigInteger.valueOf(2000_000_000), BigInteger.valueOf(2000_000_000)).toString());
     }
 }
