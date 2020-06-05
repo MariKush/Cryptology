@@ -1,13 +1,15 @@
+package lab3;
+
 import java.util.Arrays;
 
 public class MD4 {
 
-    private static byte[] z = new byte[]{
+    private static final byte[] z = new byte[]{
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
             0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15,
             0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15};
 
-    private static byte[] s = new byte[]{
+    private static final byte[] s = new byte[]{
             3, 7, 11, 19, 3, 7, 11, 19, 3, 7, 11, 19, 3, 7, 11, 19,
             3, 5, 9, 13, 3, 5, 9, 13, 3, 5, 9, 13, 3, 5, 9, 13,
             3, 9, 11, 15, 3, 9, 11, 15, 3, 9, 11, 15, 3, 9, 11, 15};
@@ -17,8 +19,9 @@ public class MD4 {
         byte[] expandedByte = Arrays.copyOf(input, byteLength);
         expandedByte[input.length] = (byte) 0x80;
 
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 8; i++) {
             expandedByte[byteLength - 8 + i] = (byte) ((input.length * 8L) >>> (8 * i));
+        }
 
         int[] expandedInt = new int[expandedByte.length / 4];
         for (int i = 0; i < expandedInt.length; i++) {
@@ -96,15 +99,15 @@ public class MD4 {
         byte[] result = new byte[16];
 
         for (int i = 0; i < 4; i++) {
-            for (j = 0; j < 4; j++)
+            for (j = 0; j < 4; j++) {
                 result[4 * i + j] = (byte) (H[i] >>> (8 * j));
+            }
         }
 
         StringBuilder out = new StringBuilder();
         for (byte temp : result) {
             int decimal = (int) temp & 0xff;  // bytes widen to int, need mask, prevent sign extension
-            String hex = Integer.toHexString(decimal);
-            out.append(hex);
+            out.append(String.format("%02x", decimal));
 
         }
         return out.toString();
