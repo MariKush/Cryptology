@@ -1,6 +1,8 @@
+package org.Masha;
+
 import sun.security.util.BitArray;
 
-import static p.Helper.*;
+import static org.Masha.Helper.*;
 
 
 public class DES {
@@ -157,7 +159,7 @@ public class DES {
             previousEncryptedBlock = currEncryptedBlock;
         }
 
-        return result;
+        return result.replace("\0", "");
     }
 
 }

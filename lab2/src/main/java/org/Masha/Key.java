@@ -1,15 +1,17 @@
+package org.Masha;
+
 import sun.security.util.BitArray;
 
-import static p.Helper.*;
+import static org.Masha.Helper.*;
 
 
 public class Key {
-    private BitArray newKey = new BitArray(64);
-    private BitArray[] keys = new BitArray[16];
+    private final BitArray newKey = new BitArray(64);
+    private final BitArray[] keys = new BitArray[16];
 
     public Key(String keyS) {
         if (keyS.length() != 7)
-            throw new IllegalArgumentException("Key has incorrect size");
+            throw new IllegalArgumentException("org.Masha.Key has incorrect size");
 
         BitArray key = new BitArray(56, keyS.getBytes());
         for (int i = 0; i < 8; i++) {
@@ -48,10 +50,11 @@ public class Key {
             leftShift(D, shiftTable[i]);
             keys[i] = new BitArray(48);
             for (int j = 0; j < 48; j++) {
-                if (keyCreateTable[i] < 28)
+                if (keyCreateTable[i] < 28) {
                     keys[i].set(i, C.get(keyCreateTable[i]));
-                else
+                } else {
                     keys[i].set(i, D.get(keyCreateTable[i] - 28));
+                }
             }
         }
 

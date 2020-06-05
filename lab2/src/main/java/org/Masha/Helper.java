@@ -1,4 +1,4 @@
-package p;
+package org.Masha;
 
 public class Helper {
     public static final int[] replaseTable1 = {
