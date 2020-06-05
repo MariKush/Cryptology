@@ -23,28 +23,6 @@ public class AdvancedEuclideanAlgorithm {
         return ans;
     }
 
-    public static void Diofant(BigInteger a, BigInteger b, BigInteger c, BigInteger[] extEuclid) {
-        // a * x + b * y = c, a = b = 0 is impossible here
-        // if c % gcd(a, b) == 0, then ax + by = c has a solution, otherwise it has none
-
-        // gcd = extEuclid[0]
-        // X = extEuclid[1]
-        // Y = extEuclid[2]
-        if (!c.remainder(extEuclid[0]).equals(BigInteger.valueOf(0))) {
-            System.out.println("None");
-            return;
-        }
-
-        BigInteger x0 = extEuclid[1].multiply(c).divide(extEuclid[0]); // x0 = X * (c / gcd)
-        BigInteger y0 = extEuclid[2].multiply(c).divide(extEuclid[0]); // y0 = Y * (c / gcd)
-        System.out.println(c.toString() + " = " + x0.toString() + "*" + a.toString() + " + " + y0.toString() + "*" + b.toString());
-
-        // x = x0 + k * b, y = y0 – k * a, k є Z
-        // Розв'язки становлять нескінченну множину, наприклад 5 з них(к від 2 до 6)
-        for (BigInteger k = BigInteger.valueOf(2); k.intValue() < 7; k = k.add(BigInteger.valueOf(1)))
-            System.out.println(c.toString() + " = " + x0.add(b.multiply(k)).toString() + "*" + a.toString() + " + " + y0.subtract(a.multiply(k)).toString() + "*" + b.toString());
-    }
-
     public static void main(String[] args) {
         // a * x + b * y = c 17x mod23=1 17*x-k*23=3
         BigInteger a = new BigDecimal("17").toBigInteger();
@@ -55,6 +33,5 @@ public class AdvancedEuclideanAlgorithm {
         System.out.println("GCD(" + a + ", " + b + ") = " + res[0]);
 
         System.out.println("Bezout's Identity: " + res[0] + " = " + res[1].toString() + "*" + a.toString() + " + " + res[2].toString() + "*" + b.toString() + "\nSolutions to Diofant equation: ");
-        Diofant(a, b, c, res);
     }
 }
